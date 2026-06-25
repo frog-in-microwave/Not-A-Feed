@@ -31,15 +31,18 @@ const fetchArticles = async (showload=true) => {
   try {
     // We start loading immediately in the background
     showload ? setIsLoading(true) : null;
-    const promise = await fetch("http://192.168.1.8:5000/api/load-articles", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const promise = await fetch(
+      `${process.env.EXPO_PUBLIC_BACKEND_URL}/load-articles`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user: currentUser,
+        }),
       },
-      body: JSON.stringify({
-        user: currentUser,
-      }),
-    });
+    );
     console.log("Fetched articles response:", promise);
     const response = await promise.json();
     const articles = response.articles || [];

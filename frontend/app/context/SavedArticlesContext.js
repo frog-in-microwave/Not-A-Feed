@@ -17,6 +17,7 @@ export function SavedArticlesProvider({ children }) {
 
   useEffect(() => {
     console.log("🔄 Loading saved articles for user:", currentUser?.id);
+
     setSavedArticles(currentUser?.savedArticles || []);
   }, [currentUser?.id]);
 
@@ -44,7 +45,7 @@ export function SavedArticlesProvider({ children }) {
     try {
       // 1. Save to backend
       const response = await fetch(
-        "http://192.168.1.8:5000/api/save-article",
+        `${process.env.EXPO_PUBLIC_BACKEND_URL}/save-article`,
         {
           // ✅ Fixed IP
           method: "POST",
@@ -95,7 +96,7 @@ export function SavedArticlesProvider({ children }) {
     try {
       // 1. Remove from backend
       const response = await fetch(
-        "http://192.168.1.8:5000/api/unsave-article",
+        `${process.env.EXPO_PUBLIC_BACKEND_URL}/unsave-article`,
         {
           // ✅ Fixed IP
           method: "POST",

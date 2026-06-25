@@ -56,7 +56,7 @@ export default function Signup() {
     return emailRegex.test(email);
   };
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     // Clear previous errors
     setErrorMessage("");
 
@@ -86,7 +86,7 @@ export default function Signup() {
     
 
     // Attempt signup
-    const result = signUp(userName, email, password, selectedTopics);
+    const result = await signUp(userName, email, password, selectedTopics);
     if (result?.error) {
       setErrorMessage(result.error);
     }

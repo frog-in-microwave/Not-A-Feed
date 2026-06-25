@@ -25,7 +25,7 @@ export default function Login() {
     return emailRegex.test(email);
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Clear previous errors
     setErrorMessage("");
 
@@ -42,7 +42,7 @@ export default function Login() {
     }
 
     // Attempt login
-    const result = login(email, password);
+    const result = await login(email, password);
     if (result?.error) {
       setErrorMessage(result.error);
     }

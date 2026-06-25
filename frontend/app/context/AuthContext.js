@@ -51,11 +51,14 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     console.log("🚪 LOGIN CALLED");
     try {
-      const response = await fetch("http://192.168.1.8:5000/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${process.env.EXPO_PUBLIC_BACKEND_URL}/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        },
+      );
 
       const data = await response.json();
       if (response.ok) {
@@ -92,11 +95,14 @@ export function AuthProvider({ children }) {
 
     // try sending a request to the backend to register the user
     try{
-      const response = await fetch("http://192.168.1.8:5000/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password, topicList, }),
-      });
+      const response = await fetch(
+        `${process.env.EXPO_PUBLIC_BACKEND_URL}/register`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password, topicList }),
+        },
+      );
     const data = await response.json();
     // if the response is ok, set the user and token in the context and AsyncStorage
     if (response.ok) {

@@ -54,7 +54,7 @@ export default function FullArticle() {
       setError(null);
       if (title) {
         const promise = await fetch(
-          "http://192.168.1.8:5000/api/parse-article",
+          `${process.env.EXPO_PUBLIC_BACKEND_URL}/parse-article`,
           {
             method: "POST",
             headers: { "content-type": "application/json" },
