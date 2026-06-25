@@ -32,7 +32,12 @@ app.get("/", (req, res) => {
 
 
 // Start server
-const PORT = process.env.BACKEND_PORT;
+const PORT = process.env.PORT;
+console.log("PORT:", process.env.PORT);
+console.log(
+  "All env keys:",
+  Object.keys(process.env).filter((k) => k.includes("PORT")),
+);
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
